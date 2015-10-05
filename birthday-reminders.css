@@ -1,0 +1,47 @@
+/* CSS declarations go here */
+body {
+    /*background-color: whitesmoke;*/
+    /*background-image: url('http://www.conversationsforabetterworld.com/wp-content/uploads/2015/06/Birthday-homepage.jpg');*/
+    /*background-position-x: 80%;*/
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-position-y: 400px;
+    font-size: 15px;
+}
+
+h1, h2, h3 {
+  color: darkslateblue;
+}
+
+.container {
+    height: 100%;
+    width: auto;
+}
+
+h4 {
+    color: #00b3ee;
+}
+
+span {
+    color: Red;
+}
+
+img{
+    width: 80%;
+    height: 50%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+hr {
+    width: 95%;
+}
+
+a, a:focus {
+    color: #9d9d9d;
+}
+
+a:hover {
+    color: silver;
+}
+

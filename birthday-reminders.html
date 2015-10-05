@@ -1,0 +1,122 @@
+<head>
+  <title>Birthday Reminder</title>
+</head>
+
+<body>
+    <!--Navigation bar that contains App name and Sign in link-->
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand"> Birthday Reminder </div>
+            </div>
+            <p class="navbar-text navbar-left text-muted text"> {{> loginButtons}} </p>
+        </div>
+    </nav>
+
+    <!--Header which has description of app-->
+    <div class="container">
+        <div class="jumbotron">
+            <h2>Hello! Welcome to Birthday Reminder app!</h2>
+            <p>Use "Birthday Reminder" to track all the Birthdays you want! You can view daily and monthly reminders too!</p>
+        </div>
+    </div>
+
+    <!--If any user log in to the application, then only the user can add and view birthdays-->
+    {{#if currentUser}}
+
+   <div class="container">
+       <!--"Add Birthdays to the list" Section-->
+       <div class="col-md-6">
+           <h3 class="text-center">Add Birthdays to your list</h3>
+           <br>
+            {{> newBirthDayForm}}
+           <br>
+           <br>
+           <p class="text-danger" id="duplicateRecordText"></p>
+           <h4>Stored Birthdays</h4>
+           <hr/>
+           <table class="table table-striped">
+               {{#each birthdays}}
+                   {{> birthday}}
+               {{/each}}
+           </table>
+       </div>
+       <!--Section that has image and the display of daily and monthly birthdays-->
+       <div class="col-md-6">
+           <img src="http://www.conversationsforabetterworld.com/wp-content/uploads/2015/06/Birthday-homepage.jpg">
+           <hr>
+           <div class="container">
+               <div class="col-md-6">
+                   <h4>Today</h4>
+                   <table class="table table-responsive">
+                       {{#each birthdaysToday}}
+                            {{> personName}}
+                       {{/each}}
+                   </table>
+               </div>
+               <div class="col-md-6">
+                   <h4> This Month </h4>
+                   <table class="table table-responsive">
+                       {{#each nextBirthdays}}
+                           {{> nextBirthday}}
+                       {{/each}}
+                   </table>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   {{/if}}
+   <hr>
+    <!--Footer section-->
+   <p class="text-muted">&copy; 2015, Bhavana Senapathi</p>
+</body>
+
+<!--Template for the form which contains fields-->
+<template name="newBirthDayForm">
+    <form class="new-birthday" id="birthdayForm">
+        <div class="row">
+            <label class="text-primary col-md-2">First Name</label>
+            <input type="text" name="firstName" placeholder="First Name" class="required">
+        </div>
+        <br>
+        <div class="row">
+            <label class="text-primary col-md-2">Last Name</label>
+            <input type="text" name="lastName" placeholder="Last Name" class="required">
+        </div>
+        <br>
+        <div class="row">
+            <label class="text-primary col-md-2">Birth Date</label>
+            <input type="text"  class="datepicker required" name="birthDate" placeholder="Birthday(MM/DD/YYYY)">
+        </div>
+        <br>
+        <input type="submit" value="Add Birthday!" class="btn-success col-md-4 col-md-offset-4">
+    </form>
+</template>
+
+<!--Template that displays the form to add birthdays-->
+<template name="birthday">
+    <br>
+    <tr>
+        <td class = "text-capitalize"><strong>{{firstName}} {{lastName}}</strong></td>
+        <td><i>{{birthDate}}</i> </td>
+        <td><button class="delete btn-danger">Remove</button></td>
+    </tr>
+</template>
+
+<!--Template that displays monthly birthdays-->
+<template name="nextBirthday">
+    <tr>
+        <p class="text-capitalize text">{{firstName}} {{lastName}}</p>
+    </tr>
+</template>
+
+<!--Template that displays daily birthdays-->
+<template name="personName">
+    <tr>
+        <p class="text-capitalize">{{firstName}} {{lastName}}</p>
+    </tr>
+</template>
+
+
+
